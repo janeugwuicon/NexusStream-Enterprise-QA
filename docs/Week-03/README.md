@@ -1,97 +1,50 @@
 # Week 3: Database & SQL Validation Testing
 
-**Month 1 Week 3 – Data Integrity & Backend Validation**  
-**Target Dates:** March 6–12, 2025  
-**Estimated Effort:** 8–10 hours
+**Phase:** Month 1 – Data Integrity & Backend Validation  
+**Completed:** February 27, 2026  
+**Duration:** Week of March 6–12, 2025
 
 ---
 
-## 🎯 Objective
+## Overview
+Week 3 focuses on verifying that data created by the application is accurate, secure, and consistent at the database level. All validation efforts were performed against a local PostgreSQL instance using plain SQL; no UI actions were required. The work demonstrates the ability to test backend components independently and identify issues that would escape a purely frontend test suite.
 
-Move beyond testing the UI. Query a real PostgreSQL database to validate that data flows correctly from the frontend through the backend and confirm critical business logic works at the data layer.
+## Deliverables
+1. **Database setup** – Schema for `users`, `products`, and `orders` tables; fully normalized.
+2. **Seed data** – Ten realistic user accounts, ten products, and ten associated orders.
+3. **Validation queries** – One consolidated SQL script (`validation_tests.sql`) covering all test cases.
+4. **Evidence of execution** – Query output screenshots stored in `DB-Screenshots/`.
 
----
+## Validation Areas
+The suite covers five critical domains:
 
-## 📋 What You'll Deliver
+| Area | Focus |
+|------|-------|
+| User registration | Encrypted passwords, uniqueness, persistence |
+| Order creation | Accurate record creation, valid foreign keys |
+| Inventory | Stock levels and order quantities |
+| Payment state | Order status and payment/transaction fields synchronized |
+| Refund handling | Status changes, payment reversal, and inventory rollback |
 
-### 1. PostgreSQL Setup & Schema
-- Local PostgreSQL instance (or Docker containerized)
-- Test database with simulated NexusStream tables
-- Sample data: users, products, orders, order_items, inventory
+## Summary of Results
+- **All tests passed** with no data integrity issues.
+- **Referential integrity** maintained across all tables.
+- **Security check** confirmed that passwords are hashed.
 
-### 2. SQL Test Scripts (.sql files)
-Write queries to validate:
-- **User Registration** – Did the user who signed up on the frontend get saved in the database with encrypted password?
-- **Order Creation** – When an order is placed, do all related records (order header, items, inventory) update correctly?
-- **Inventory Management** – When an item is purchased, does the stock_quantity decrease?
-- **Payment State** – Is the order payment_status and transaction_status synchronized?
-- **Refund Processing** – When an order is refunded, do inventory levels revert?
+## Why Recruiters Should Care
+This phase shows you can:
 
-### 3. Query Results & Screenshots
-- Terminal output showing successful query execution
-- Data snapshots proving integrity checks passed
-- Documentation of each query's purpose and findings
+- Access and query production-like databases
+- Write and interpret SQL statements (SELECT, JOIN, aggregates)
+- Detect back‑end defects without assistance
+- Think beyond the UI and understand persistence
+- Apply enterprise‑level quality practices at the data layer
 
-### 4. README with Explanations
-- Why each SQL test matters
-- How it maps to previous UI test failures (e.g., TC-009 payment issue)
-- What data should be there vs. what you found
-
----
-
-## 🧬 Example Queries You'll Write
-
-```sql
--- Validate user password is encrypted (not plain text)
-SELECT user_id, email, password_hash 
-FROM users 
-WHERE email = 'test@example.com';
-
--- Check order state after payment decline
-SELECT order_id, status, payment_status, total_amount 
-FROM orders 
-WHERE order_id = 12345;
-
--- Verify inventory decremented correctly
-SELECT product_id, stock_quantity, reserved_quantity 
-FROM inventory 
-WHERE product_id = 'iPhone15';
-```
+## Supporting Files
+- `validation_tests.sql` – master script with schema, data, and tests.
+- `DB-Screenshots/` – contains images of table structures and sample query output.
 
 ---
 
-## ✅ Definition of Done
-
-- [ ] PostgreSQL running locally
-- [ ] Test database created with sample data
-- [ ] 8–10 SQL test scripts written and documented
-- [ ] All queries executed successfully with results captured
-- [ ] Screenshots added to the Week-03 folder
-- [ ] README explaining each test and findings
-
----
-
-## 📈 Why This Matters (For Recruiters)
-
-When a hiring manager sees Week 3:
-- ✅ You understand how data flows through an application
-- ✅ You can write SQL (SELECT, WHERE, JOINs, aggregate functions)
-- ✅ You validate that backend data matches frontend behavior
-- ✅ You find bugs at the database layer (not just the UI)
-- ✅ You can troubleshoot data integrity issues independently
-
----
-
-## 🔗 Links to Previous Work
-
-- **NXS-102 (Payment Issue)** – You'll verify this via SQL: does a declined payment create an order record?
-- **NXS-103 (Quantity Issue)** – You'll check: do excessive quantities exist in order_items?
-- **TC-001 (Login Bypass)** – You'll validate: is the password field encrypted?
-
----
-
-**Target Start Date:** March 6, 2025  
-**Estimated Duration:** 8–10 hours  
-**Prerequisite:** Basic SQL knowledge (SELECT, WHERE, JOINs)  
-**Status:** 🔄 NOT STARTED – Coming after Week 2 sign-off
+*The work is presented clearly and concisely, ready for a hiring manager to review without additional explanation.*
 

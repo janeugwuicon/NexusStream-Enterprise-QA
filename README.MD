@@ -1,7 +1,7 @@
 # 🚀 NexusStream: Enterprise Quality & AI Evaluation Framework
 
 **A 16-week, production-grade QA portfolio project**  
-**Status:** ✅ Month 1 Complete (Weeks 1–2 delivered)
+**Status:** ✅ Month 1 Complete (Weeks 1–4 delivered); Month 2 in progress
 
 [![Python Version](https://img.shields.io/badge/Python-3.12%2B-blue.svg)](https://python.org)
 [![Playwright](https://img.shields.io/badge/Playwright-Web%20Automation-2EAD33?logo=playwright)](https://playwright.dev/)
@@ -22,11 +22,12 @@
 |------|-------|--------|--------------|
 | **Week 1** | Manual Testing & Test Design | ✅ COMPLETE | 10 test cases, 6 defects identified |
 | **Week 2** | bug Reporting & Triage | ✅ COMPLETE | 10 professional bug reports, triage process |
-| **Week 3** | SQL & Database Validation | 🔄 PLANNED | SQL scripts, data integrity checks |
-| **Week 4** | API Testing with Postman | 🔄 PLANNED | Postman collection, 15+ API tests |
+| **Week 3** | SQL & Database Validation | ✅ COMPLETE | SQL scripts, data integrity checks |
+| **Week 4** | API Testing with Postman | ✅ COMPLETE | Postman collection, 15+ API tests |
+| **Week 5** | Smoke Test Automation | 🔄 IN PROGRESS | Playwright scripts, CI workflow |
 
 **Production Status:** ❌ NOT APPROVED — 2 critical blockers (payment, authentication)  
-**Next Deadline:** SQL testing (Week 3)
+**Next Deadline:** Smoke automation (Week 5)
 
 ---
 
@@ -115,17 +116,23 @@ NexusStream-Enterprise-QA/
 
 ---
 
-## 🔄 Month 1 Weeks 3–4 (Coming Next)
+## ✅ Month 1 Weeks 3–4 (Completed)
 
-### 🔄 Week 3: SQL & Database Validation  
-Test that data flows correctly from frontend → backend → database.  
-**Deliverables:** SQL scripts, database integrity checks, data snapshots  
-**Target:** March 6–12, 2025
+### ✅ Week 3: SQL & Database Validation  
+Executed a comprehensive suite of SQL queries to validate data integrity.  
+**Deliverables:** Consolidated `validation_tests.sql`, database screenshots, README summary  
+**Completion:** March 12, 2025
 
-### 🔄 Week 4: API Testing with Postman  
-Validate REST API endpoints using Postman collection with 15+ test cases.  
-**Deliverables:** Postman collection/environment exports, API test screenshots  
-**Target:** March 13–19, 2025
+### ✅ Week 4: API Testing with Postman  
+Created and executed a Postman collection covering core REST endpoints.  
+**Deliverables:** Collection & environment exports, over 15 API assertions, documentation  
+**Completion:** March 19, 2025
+
+---
+
+## 🔄 Month 2 Week 1 (In Progress)
+Smoke tests written with Playwright and Python; CI workflow configured.  
+Next: push smoke folder to GitHub and verify CI runs successfully.
 
 ---
 
@@ -166,6 +173,14 @@ pytest tests/api/ -v
 # Generate Report
 allure serve allure-results
 ```
+
+## 🧪 QA Automation
+
+The automation code and tests are in the `nexusstream-qa` folder. That folder has a simple README with setup and run instructions for beginners.
+
+- To see automation details, open `nexusstream-qa/README.md`.
+- Follow the steps there to set up a virtual environment, install dependencies, and run tests.
+
 
 ---
 

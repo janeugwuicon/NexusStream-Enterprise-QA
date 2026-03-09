@@ -14,19 +14,31 @@ This folder contains the automation code and tests for the NexusStream QA projec
 - `pip` for installing Python packages
 - Playwright browsers (installed with `playwright install`)
 
-## Setup (Windows)
+## Setup
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-playwright install
-```
+1.  Create and activate a virtual environment:
+    ```sh
+    # Create the environment
+    python -m venv .venv
+    
+    # Activate on Windows
+    .\.venv\Scripts\Activate.ps1
+    
+    # Activate on macOS/Linux
+    source .venv/bin/activate
+    ```
+2.  Install dependencies from the requirements file:
+    ```sh
+    pip install -r requirements.txt
+    ```
+3.  Install the necessary Playwright browsers:
+    ```sh
+    playwright install
+    ```
 
 ## Run tests
 
-- Run all tests:
-
+Run all tests verbosely:
 ```powershell
 pytest -v
 ```
@@ -51,4 +63,3 @@ pytest tests/smoke/ -q
 - Keep commit messages short and meaningful.
 
 Thanks for checking the NexusStream QA automation project.
-

@@ -1,25 +1,28 @@
 import pytest
 from playwright.sync_api import expect
+from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
 from pages.checkout_page import CheckoutPage
-from core.builders import UserBuilder
+
 
 @pytest.mark.e2e
-def test_complete_checkout(auth_page):
+def test_checkout_e2e(page):
+    login = LoginPage(page)
+    inventory = InventoryPage(page)
+    checkout = CheckoutPage(page)
 
-    inventory = InventoryPage(auth_page)
-    checkout = CheckoutPage(auth_page)
+    login.load()
+    login.login("standard_user", "secret_sauce")
 
-    auth_page.goto("https://www.saucedemo.com/inventory.html")
+    page.goto("/inventory.html")
 
-    inventory.add_item("sauce-labs-backpack")
+    inventory.search_and_add("sauce-labs-backpack")
     expect(inventory.cart_badge).to_have_text("1")
 
-    inventory.open_cart()
+    inventory.go_to_cart()
     checkout.start_checkout()
 
-    user = UserBuilder().build()
-    checkout.fill_shipping(*user)
-    checkout.finish()
+    checkout.fill_shipping("John", "Doe", "12345")
 
-    expect(checkout.success_header).to_have_text("Thank you for your order!")
+    confirmation = checkout.finish()
+    expect(confirmation).to_have_text("Thank you for your order!")

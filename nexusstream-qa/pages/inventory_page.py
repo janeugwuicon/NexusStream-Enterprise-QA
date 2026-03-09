@@ -1,17 +1,12 @@
-from core.base_page import BasePage
+from playwright.sync_api import Page
 
-class InventoryPage(BasePage):
+class InventoryPage:
+    def __init__(self, page: Page):
+        self.page = page
+        self.cart_badge = page.get_by_test_id("shopping-cart-badge")
 
-    @property
-    def title(self):
-        return self.page.locator(".title")
+    def search_and_add(self, product_id: str):
+        self.page.get_by_test_id(f"add-to-cart-{product_id}").click()
 
-    @property
-    def cart_badge(self):
-        return self.by_test_id("shopping-cart-badge")
-
-    def add_item(self, product_id: str):
-        self.by_test_id(f"add-to-cart-{product_id}").click()
-
-    def open_cart(self):
-        self.by_test_id("shopping-cart-link").click()
+    def go_to_cart(self):
+        self.page.get_by_test_id("shopping-cart-link").click()

@@ -12,16 +12,5 @@ dependencies = [
     "pytest-xdist>=3.5.0",
     "pytest-rerunfailures>=12.0",
     "allure-pytest>=2.13.2",
-    "pytest-sugar>=1.1.1",
-]
-
-[tool.pytest.ini_options]
-addopts = "-n auto --reruns 2 --reruns-delay 1 -v --color=yes"
-testpaths = ["tests"]
-pythonpath = ["."]
-markers = [
-    "smoke: Critical path smoke tests",
-    "e2e: End-to-end user flows",
-    "api: API validation tests",
-    "data: Data-driven validation tests",
+    "pytest-sugar>=1.1.1"
 ]

@@ -1,5 +1,7 @@
-card_number,expected
-4111111111111111,accepted
-5555555555554444,accepted
-0000000000000000,rejected
-1234567890123456,rejected
+name,card_no,cvc,month,year,expected
+Visa Success,4242424242424242,123,12,2027,success
+Empty Card,,123,12,2027,fail
+Mastercard,5555444433332222,444,01,2028,success
+Expired Card,4242424242424242,123,01,2020,success
+Invalid Card,1234567890123456,123,12,2027,fail
+

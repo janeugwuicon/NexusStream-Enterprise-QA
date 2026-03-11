@@ -1,13 +1,14 @@
-from playwright.sync_api import Page
+from .base_page import BasePage
 
-class LoginPage:
-    def __init__(self, page: Page):
-        self.page = page
 
-    def load(self):
-        self.page.goto("/")
+class LoginPage(BasePage):
 
-    def login(self, username: str, password: str):
-        self.page.get_by_test_id("username").fill(username)
-        self.page.get_by_test_id("password").fill(password)
-        self.page.get_by_test_id("login-button").click()
+    EMAIL = "[data-qa='login-email']"
+    PASSWORD = "[data-qa='login-password']"
+    LOGIN = "[data-qa='login-button']"
+    USER = "li:has-text('Logged in as') b"
+
+    def login(self, email, password):
+        self.fill(self.EMAIL, email)
+        self.fill(self.PASSWORD, password)
+        self.click(self.LOGIN)

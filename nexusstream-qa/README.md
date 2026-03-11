@@ -1,61 +1,79 @@
-# NexusStream QA Automation
+# NexusStream QA Automation Portfolio
 
-This folder contains the automation code and tests for the NexusStream QA project.
+This repository contains the automation code and supporting documentation for the NexusStream QA project, designed to showcase a comprehensive range of quality assurance skills.
 
 ## What is this project?
 
-- A simple QA automation project for a demo application called NexusStream.
-- It shows how to write UI and API tests, run them, and create reports.
-- The project is written in Python and uses Playwright and Pytest.
+This is a portfolio project that demonstrates a full-spectrum QA process, from manual test planning to automated backend validation.
+
+- **Automation Framework**: A UI test automation framework built with Python, Playwright, and Pytest.
+- **Test Application**: All tests are run against [Automation Exercise](https://automationexercise.com/).
+- **Methodologies**: The framework uses the Page Object Model (POM) for maintainability and demonstrates smoke, end-to-end, and data-driven testing patterns.
+- **Comprehensive Documentation**: The `/docs` directory contains detailed artifacts from manual testing phases, including test strategies, bug reports, triage processes, and SQL validation scripts, providing context for the automation suite.
+- **Reporting**: Generates detailed Allure reports for visualizing test results.
 
 ## Requirements
 
-- Python 3.12 or newer
-- `pip` for installing Python packages
-- Playwright browsers (installed with `playwright install`)
+- Python 3.13 or newer
+- `uv` for dependency management (modern Python package manager)
+- Playwright browsers
 
 ## Setup
 
-1.  Create and activate a virtual environment:
-    ```sh
-    # Create the environment
-    python -m venv .venv
-    
-    # Activate on Windows
-    .\.venv\Scripts\Activate.ps1
-    
-    # Activate on macOS/Linux
-    source .venv/bin/activate
-    ```
-2.  Install dependencies from the requirements file:
-    ```sh
-    pip install -r requirements.txt
-    ```
-3.  Install the necessary Playwright browsers:
-    ```sh
-    playwright install
-    ```
+1. Install `uv` if not already installed:
+   ```sh
+   # On Windows
+   winget install astral-sh.uv
+
+   # Or using pip
+   pip install uv
+   ```
+
+2. Install dependencies using uv:
+   ```sh
+   uv sync
+   ```
+
+3. Install Playwright browsers:
+   ```sh
+   uv run playwright install
+   ```
 
 ## Run tests
 
-Run all tests verbosely:
-```powershell
-pytest -v
+Run all tests:
+```sh
+uv run pytest
 ```
 
-- Run smoke tests only:
-
-```powershell
-pytest tests/smoke/ -q
+Run smoke tests only:
+```sh
+uv run pytest tests/smoke/
 ```
 
-## Project layout (short)
+Run with Allure reporting:
+```sh
+uv run pytest --alluredir=allure-results
+allure serve allure-results
+```
 
-- `core/` - helpers and base page objects
-- `pages/` - page objects
-- `tests/` - test suites (ui, api, smoke)
-- `data/` - test data
-- `allure-results/` - test report output
+## Project Structure
+
+- `pages/` - Page Object Model classes for different pages
+- `tests/` - Test suites organized by type (smoke, e2e, ddt)
+- `utils/` - Utility functions (e.g., CSV data reader)
+- `data/` - Test data files
+- `allure-results/` - Generated test reports
+
+## Test Types
+
+- **Smoke Tests**: Basic functionality verification (login, homepage load)
+- **E2E Tests**: Complete user journey testing (login → add to cart → checkout → order completion)
+- **DDT (Data-Driven Tests)**: Parameterized tests with CSV data (payment gateway validation)
+
+## CI/CD
+
+GitHub Actions workflow runs tests on every push.
 
 ## Contributing
 

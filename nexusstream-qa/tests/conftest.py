@@ -1,14 +1,25 @@
 import pytest
-from playwright.sync_api import Playwright
+from pages.signup_page import SignupPage
+from pages.product_page import ProductPage
+from pages.checkout_page import CheckoutPage
+from pages.login_page import LoginPage
 
 
-# -----------------------------------
-# Global selector configuration
-# -----------------------------------
-@pytest.fixture(scope="session", autouse=True)
-def configure_selectors(playwright: Playwright):
-    """
-    Standardize test id selector across framework.
-    SauceDemo uses data-test attribute.
-    """
-    playwright.selectors.set_test_id_attribute("data-test")
+@pytest.fixture
+def signup(page):
+    return SignupPage(page)
+
+
+@pytest.fixture
+def products(page):
+    return ProductPage(page)
+
+
+@pytest.fixture
+def checkout(page):
+    return CheckoutPage(page)
+
+
+@pytest.fixture
+def login(page):
+    return LoginPage(page)

@@ -1,0 +1,39 @@
+name: NexusStream CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install Dependencies
+      working-directory: ./nexusstream-qa
+      run: |
+        python -m pip install --upgrade pip
+        # Installing dependencies listed in your pyproject.toml
+        pip install pytest pytest-playwright pandas python-dotenv psycopg2-binary requests responses allure-pytest playwright pytest-base-url pydantic pytest-xdist
+
+    - name: Install Playwright Browsers
+      run: playwright install --with-deps
+
+    - name: Run Tests
+      working-directory: ./nexusstream-qa
+      # Running tests and generating allure results directory
+      run: pytest --alluredir=allure-results
+
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      with:
+        name: allure-results
+        path: nexusstream-qa/allure-results

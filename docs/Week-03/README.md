@@ -1,50 +1,42 @@
 # Week 3: Database & SQL Validation Testing
 
-**Phase:** Month 1 – Data Integrity & Backend Validation  
+**Phase:** Month 3 – Senior QA (Backend & Data Integrity)
+**Focus:** Verifying application data at the source.
 **Completed:** February 27, 2026  
-**Duration:** Week of March 6–12, 2025
 
 ---
 
 ## Overview
-Week 3 focuses on verifying that data created by the application is accurate, secure, and consistent at the database level. All validation efforts were performed against a local PostgreSQL instance using plain SQL; no UI actions were required. The work demonstrates the ability to test backend components independently and identify issues that would escape a purely frontend test suite.
 
-## Deliverables
-1. **Database setup** – Schema for `users`, `products`, and `orders` tables; fully normalized.
-2. **Seed data** – Ten realistic user accounts, ten products, and ten associated orders.
-3. **Validation queries** – One consolidated SQL script (`validation_tests.sql`) covering all test cases.
-4. **Evidence of execution** – Query output screenshots stored in `DB-Screenshots/`.
+This phase demonstrates the ability to bypass the UI and test the application's backend directly. By querying the database, we can validate data integrity, referential consistency, and business logic that is impossible to see from the frontend alone. All tests were performed against a PostgreSQL database.
 
 ## Validation Areas
-The suite covers five critical domains:
 
-| Area | Focus |
-|------|-------|
-| User registration | Encrypted passwords, uniqueness, persistence |
-| Order creation | Accurate record creation, valid foreign keys |
-| Inventory | Stock levels and order quantities |
-| Payment state | Order status and payment/transaction fields synchronized |
-| Refund handling | Status changes, payment reversal, and inventory rollback |
+The SQL validation script (`validation_tests.sql`) covers five critical domains:
+
+| Area | Focus | Key Validation Technique |
+|---|---|---|
+| **User Registration** | Passwords are not stored in plain text. | `SELECT` query on the `users` table to check the password hash format. |
+| **Order Creation** | Orders correctly link to users and products. | `JOIN` between `orders`, `users`, and `order_items` to verify foreign key relationships. |
+| **Inventory Management**| Stock levels decrease accurately after an order. | Comparing `products.stock_quantity` before and after a simulated order. |
+| **Payment State** | Order status is correctly synchronized with payment. | `SELECT` on `orders` to ensure `status` is 'COMPLETED' only when a transaction ID is present. |
+| **Refund Logic** | Inventory is correctly restocked on a refund. | Validating that a 'REFUNDED' order status triggers an increment in `products.stock_quantity`. |
 
 ## Summary of Results
-- **All tests passed** with no data integrity issues.
-- **Referential integrity** maintained across all tables.
+
+- **All 5 validation areas passed** with no data integrity issues found.
+- **Referential integrity** between `users`, `products`, and `orders` is correctly maintained.
 - **Security check** confirmed that passwords are hashed.
 
-## Why Recruiters Should Care
-This phase shows you can:
+## Why This Matters for a Senior Role
 
-- Access and query production-like databases
-- Write and interpret SQL statements (SELECT, JOIN, aggregates)
-- Detect back‑end defects without assistance
-- Think beyond the UI and understand persistence
-- Apply enterprise‑level quality practices at the data layer
+This work proves capabilities that are essential for a senior position:
 
-## Supporting Files
-- `validation_tests.sql` – master script with schema, data, and tests.
-- `DB-Screenshots/` – contains images of table structures and sample query output.
+- **Thinking Beyond the UI:** Understanding that the user interface is only one layer of the application.
+- **Writing & Interpreting SQL:** Ability to write `SELECT` statements with `JOINs` and aggregates to find complex data issues.
+- **Backend Defect Detection:** The skill to identify bugs (e.g., inventory not updating) that would be missed by UI-only testing.
+- **Enterprise-Level Practices:** Applying data-layer validation is a hallmark of a mature, enterprise-grade quality process.
 
 ---
 
-*The work is presented clearly and concisely, ready for a hiring manager to review without additional explanation.*
-
+*This deliverable is ready for a hiring manager to review as clear evidence of backend testing and SQL proficiency.*

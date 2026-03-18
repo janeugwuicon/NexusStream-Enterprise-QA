@@ -1,14 +1,17 @@
-from .base_page import BasePage
-
+from pages.base_page import BasePage
 
 class LoginPage(BasePage):
+    def __init__(self, page):
+        super().__init__(page)
+        self.username = page.locator("#user-name")
+        self.password = page.locator("#password")
+        self.login_btn = page.locator("#login-button")
+        self.error = page.locator("[data-test='error']")
 
-    EMAIL = "[data-qa='login-email']"
-    PASSWORD = "[data-qa='login-password']"
-    LOGIN = "[data-qa='login-button']"
-    USER = "li:has-text('Logged in as') b"
+    def load(self):
+        self.visit("https://www.saucedemo.com/")
 
-    def login(self, email, password):
-        self.fill(self.EMAIL, email)
-        self.fill(self.PASSWORD, password)
-        self.click(self.LOGIN)
+    def login(self, user, pwd):
+        self.fill(self.username, user)
+        self.fill(self.password, pwd)
+        self.click(self.login_btn)

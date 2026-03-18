@@ -1,42 +1,22 @@
-from .base_page import BasePage
-
+from pages.base_page import BasePage
 
 class CheckoutPage(BasePage):
+    def __init__(self, page):
+        super().__init__(page)
+        self.checkout_btn = self.page.locator("#checkout")
+        self.first_name = self.page.locator("#first-name")
+        self.last_name = self.page.locator("#last-name")
+        self.postal = self.page.locator("#postal-code")
+        self.continue_btn = self.page.locator("#continue")
+        self.finish_btn = self.page.locator("#finish")
+        self.success = self.page.locator(".complete-header")
+        self.error = self.page.locator("[data-test='error']")
 
-    # checkout page
-    PROCEED_CHECKOUT = ".check_out"
-    MESSAGE = "textarea[name='message']"
-    PLACE_ORDER = "a:has-text('Place Order')"
+    def fill_details(self, f_name, l_name, zip_code):
+        self.first_name.fill(f_name)
+        self.last_name.fill(l_name)
+        self.postal.fill(zip_code)
+        self.continue_btn.click()
 
-    # payment page
-    NAME = "[data-qa='name-on-card']"
-    CARD = "[data-qa='card-number']"
-    CVC = "[data-qa='cvc']"
-    MONTH = "[data-qa='expiry-month']"
-    YEAR = "[data-qa='expiry-year']"
-    PAY = "[data-qa='pay-button']"
-
-    SUCCESS = "[data-qa='order-placed']"
-
-    def proceed_to_checkout(self):
-        """Click proceed to checkout from cart"""
-        self.click(self.PROCEED_CHECKOUT)
-
-    def add_order_message(self, message: str):
-        """Add delivery instructions"""
-        self.fill(self.MESSAGE, message)
-
-    def place_order(self):
-        """Move to payment page"""
-        self.click(self.PLACE_ORDER)
-
-    def pay(self, name, card, cvc, month, year):
-        """Fill payment form"""
-
-        self.fill(self.NAME, name)
-        self.fill(self.CARD, card)
-        self.fill(self.CVC, cvc)
-        self.fill(self.MONTH, month)
-        self.fill(self.YEAR, year)
-
-        self.click(self.PAY)
+    def finish(self):
+        self.finish_btn.click()

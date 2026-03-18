@@ -1,5 +1,7 @@
 # NexusStream Enterprise QA Portfolio
 
+![CI Status](https://github.com/YOUR_GITHUB_USERNAME/NexusStream-Enterprise-QA/actions/workflows/ci.yml/badge.svg)
+
 **Full-Stack Quality Engineering Journey: Manual → Automation → Performance → AI Testing**
 
 A comprehensive QA engineering portfolio demonstrating end-to-end testing capabilities across a simulated global e-commerce platform (NexusStream). This project showcases production-grade QA practices, from manual test design to AI system evaluation, aligned with modern DevOps pipelines.
@@ -32,6 +34,11 @@ A comprehensive QA engineering portfolio demonstrating end-to-end testing capabi
 | **AI Evaluation** | DeepEval, Giskard (planned) |
 | **CI/CD** | GitHub Actions |
 | **Reporting** | Allure Reports |
+
+## 📊 Test Reporting Artifacts
+
+![Allure Report Dashboard](docs/images/allure_dashboard_screenshot.png)
+*Screenshot of the Allure Report showing test execution results.*
 
 ## 📋 QA Roadmap & Progress
 

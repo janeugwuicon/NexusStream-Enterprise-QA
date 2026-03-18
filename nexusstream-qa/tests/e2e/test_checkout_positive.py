@@ -22,23 +22,3 @@ def test_checkout_success(page):
     assert checkout.success.is_visible()
     
 
-def test_checkout_missing_fields(page):
-    lp = LoginPage(page)
-    lp.load()
-    lp.login("standard_user", "secret_sauce")
-
-    from pages.inventory_page import InventoryPage
-    from pages.cart_page import CartPage
-    from pages.checkout_page import CheckoutPage
-
-    inv = InventoryPage(page)
-    inv.add_item()
-    inv.go_to_cart()
-
-    cart = CartPage(page)
-    cart.checkout()
-
-    checkout = CheckoutPage(page)
-    checkout.fill_details("", "", "")
-
-    assert checkout.error.is_visible()

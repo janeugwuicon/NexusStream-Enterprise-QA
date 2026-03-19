@@ -1,4 +1,4 @@
-import pytest
+
 import psycopg2
 import os
 from pages.login_page import LoginPage

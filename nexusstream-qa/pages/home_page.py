@@ -1,7 +1,7 @@
 from pages.base_page import BasePage
 class HomePage(BasePage):
     def __init__(self, page):
-        self.page = page
+        super().__init__(page)
         self.logo = page.locator(".login_logo")
 
     def load(self):

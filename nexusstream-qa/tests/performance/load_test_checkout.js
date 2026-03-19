@@ -1,10 +1,8 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
-/**
- * Senior QA Performance Scenario:
+/*
  * Simulate high traffic on the Checkout API.
- * 
  * Goal: Verify P95 response time is < 500ms under load.
  */
 export const options = {
@@ -23,7 +21,6 @@ export const options = {
 
 export default function () {
   // Simulating a checkout POST request
-  // 
   const url = 'https://jsonplaceholder.typicode.com/posts';
   const payload = JSON.stringify({
     title: 'Checkout Order #1001',

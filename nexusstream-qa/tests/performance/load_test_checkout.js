@@ -23,7 +23,7 @@ export const options = {
 
 export default function () {
   // Simulating a checkout POST request
-  // Using jsonplaceholder mock to ensure stability for portfolio screenshot
+  // 
   const url = 'https://jsonplaceholder.typicode.com/posts';
   const payload = JSON.stringify({
     title: 'Checkout Order #1001',

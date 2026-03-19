@@ -1,4 +1,5 @@
-class HomePage:
+from pages.base_page import BasePage
+class HomePage(BasePage):
     def __init__(self, page):
         self.page = page
         self.logo = page.locator(".login_logo")

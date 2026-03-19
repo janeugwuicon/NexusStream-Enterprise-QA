@@ -30,7 +30,6 @@ jobs:
 
     - name: Run Tests
       working-directory: ./nexusstream-qa
-      # Running tests and generating allure results directory
       run: pytest --alluredir=allure-results
 
     - name: Upload Test Results
